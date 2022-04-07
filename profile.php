@@ -65,7 +65,7 @@
         $myquery = "SELECT * FROM post WHERE user_id = '$uid'";
         $res = mysqli_query($mydb,$myquery);
         echo
-        '<h2>Your Story</h2>';
+        '<h2>'.$uname.' Story</h2>';
         $count = 0;
         while ($row = $res->fetch_assoc()) {
             $title = $row["title"];
@@ -93,11 +93,18 @@
         }
         for($i=0;$i<$count;$i++){
             if($_POST["action"] == "save_$i"){
-                echo $_POST["title"];
-                echo $_POST["content"];
-            }
+                $title =  $_POST["title"];
+                $content =  $_POST["content"];
+                $id = $_POST["id"];
+                mysqli_query($mydb, "UPDATE post SET title='$title', content='$content' WHERE post_id='$id'");
+                header("location:profile.php?username=$uname");
+            }          
+            if($_POST["action"] == "delete_$i"){
+                $id = $_POST["id"];
+                mysqli_query($mydb, "DELETE FROM post WHERE post_id='$id'");
+                header("location:profile.php?username=$uname");
+            }     
         };
 ?>
-
 </body>
 </html>
