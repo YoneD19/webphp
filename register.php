@@ -13,7 +13,7 @@ if(isset($_POST["submit"])){
         echo
         "<script>alert('Username or Email has already taken');</script>";
     }else{
-        $query = "INSERT INTO user VALUES(NULL,'$name','$username','$email','$password')";
+        $query = "INSERT INTO user VALUES(NULL,'$name','$username','$email','$password','0')";
         mysqli_query($mydb,$query);
         echo
         "<script>alert('Success');</script>";

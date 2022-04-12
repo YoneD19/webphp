@@ -41,8 +41,15 @@
         $email = $_POST["email"];
         $password = $_POST["password"];
         $isadmin = $_POST["isadmin"];
-        $sql = "INSERT INTO user VALUES(NULL,'$name','$username','$email','$password','$isadmin') ";
+        $dup = mysqli_query($mydb,"SELECT * FROM user WHERE username = '$username' OR email = '$email'");
+        if(mysqli_num_rows($dup)>0){
+            echo
+            "<script>alert('Username or Email has already taken');</script>";
+        }else{
+            $sql = "INSERT INTO user VALUES(NULL,'$name','$username','$email','$password','$isadmin') ";
         mysqli_query($mydb,$sql);
+        }
+
     }
 echo '<br><br>';
         $sql = "SELECT * FROM user";
