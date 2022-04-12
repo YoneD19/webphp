@@ -25,6 +25,13 @@
         <input type="submit" id="" name="submit" value="Search"><br>
     </form>
     <a href="profile.php?username=<?php echo $row["username"]; ?>">Your Profile</a><br>
+    <?php 
+
+        if($_SESSION["isadmin"] == '1'){
+            echo
+            '<a href="dashboard.php">Dashboard</a><br>';
+        }
+    ?>
     <a href="logout.php">Logout</a>
 </body>
 </html>

@@ -13,6 +13,7 @@
             $_SESSION["login"] = true;
             $_SESSION["id"] = $row["id"];
             $_SESSION["username"] = $row["username"];
+            $_SESSION["isadmin"] = $row["isadmin"];
             header("location:index.php");
         }else{
             echo
