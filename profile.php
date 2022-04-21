@@ -43,6 +43,7 @@
         '<form action="" method="post">
         <div  style="border:solid thin #aaa;padding: 10px;width: 400px;>
         <label for="Tittle">Tittle:&nbsp&nbsp&nbsp&nbsp</label>
+            <input type="hidden" name="post" value="1" />
             <input type="text" id="title" name="title" size="40" required value=""><br><br>
             <label for="Content">Content:</label>
             <textarea id="content" name="content" rows="6" cols="48" required value=""></textarea>
@@ -52,7 +53,7 @@
     }
     $uname = $row["username"];
     $userid = $_SESSION["id"];
-    if(isset($_POST["submit"])){
+    if(isset($_POST["post"]) && $_POST["post"] == 1 && $_SESSION["username"] ==$uname){
         $title = $_POST["title"];
         $content = $_POST["content"];
         $sql = "INSERT INTO post VALUES(NULL,'$title','$content','$userid') ";
@@ -92,19 +93,20 @@
             $count++;
         }
         for($i=0;$i<$count;$i++){
-            if($_POST["action"] == "save_$i"){
+            if($_POST["action"] == "save_$i" && $_SESSION["username"] ==$uname){
                 $title =  $_POST["title"];
                 $content =  $_POST["content"];
                 $id = $_POST["id"];
                 mysqli_query($mydb, "UPDATE post SET title='$title', content='$content' WHERE post_id='$id'");
                 header("location:profile.php?username=$uname");
             }          
-            if($_POST["action"] == "delete_$i"){
+            if($_POST["action"] == "delete_$i" && $_SESSION["username"] ==$uname){
                 $id = $_POST["id"];
                 mysqli_query($mydb, "DELETE FROM post WHERE post_id='$id'");
                 header("location:profile.php?username=$uname");
             }     
         };
+
 ?>
 </body>
 </html>

@@ -21,12 +21,11 @@
     <h2>Search Username below:</h2>
     <form action="profile.php" method="GET">
         <label for="username" id="username">Username:</label>
-        <input type="text" id="username" name="username"><br>
+        <input type="text" id="username" name="username">
         <input type="submit" id="" name="submit" value="Search"><br>
     </form>
     <a href="profile.php?username=<?php echo $row["username"]; ?>">Your Profile</a><br>
     <?php 
-
         if($_SESSION["isadmin"] == '1'){
             echo
             '<a href="dashboard.php">Dashboard</a><br>';
