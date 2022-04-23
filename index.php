@@ -18,19 +18,34 @@
 </head>
 <body>
     <h1>Welcome <?php echo $row["username"] ?></h1>
+    <p><a href="profile.php?username=<?php echo $row["username"]; ?>">Your Profile</a> |
+    <?php 
+        if($_SESSION["isadmin"] == '1'){
+            echo
+            '<a href="dashboard.php">Dashboard</a>';
+            echo ' | ';
+        }
+    ?>
+    <a href="logout.php">Logout</a></p>
     <h2>Search Username below:</h2>
     <form action="profile.php" method="GET">
         <label for="username" id="username">Username:</label>
         <input type="text" id="username" name="username">
         <input type="submit" id="" name="submit" value="Search"><br>
     </form>
-    <a href="profile.php?username=<?php echo $row["username"]; ?>">Your Profile</a><br>
-    <?php 
-        if($_SESSION["isadmin"] == '1'){
-            echo
-            '<a href="dashboard.php">Dashboard</a><br>';
+    <h1>ALL POST</h1>
+<?php
+    $myquery = "SELECT * FROM post";
+    $res = mysqli_query($mydb,$myquery);
+    $count = 1;
+    while ($row = $res->fetch_assoc()) {
+        $title = $row['title'];
+        $content = $row['content'];
+        echo '<h2>'.$count.'.'.$title.'</h2>';
+        echo $content;
+        echo '</br>-----------------------------------------------------------------------------';
+        $count++;
         }
-    ?>
-    <a href="logout.php">Logout</a>
+?>
 </body>
 </html>

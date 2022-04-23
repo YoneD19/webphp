@@ -26,15 +26,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert New Record</title>
+<title>Insert New Account</title>
 </head>
 <body>
 <div class="form">
 <p><a href="dashboard.php">Dashboard</a> 
-| <a href="view.php">View Records</a> 
+| <a href="view.php">View Account</a> 
 | <a href="logout.php">Logout</a></p>
 <div>
-<h1>Insert New Record</h1>
+<h1>Insert New Account</h1>
 <form name="form" method="post" action=""> 
 <input type="hidden" name="add" value="1" />
 <p><input type="text" name="name" placeholder="Name" required /></p>

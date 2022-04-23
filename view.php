@@ -11,9 +11,9 @@ include("auth.php");
 <body>
 <div class="form">
 <p><a href="index.php">Home</a> 
-| <a href="insert.php">Insert New Record</a> 
+| <a href="insert.php">Insert New Account</a> 
 | <a href="logout.php">Logout</a></p>
-<h2>View Records</h2>
+<h2>View ACcount</h2>
 <table width="100%" border="1" style="border-collapse:collapse;">
 <thead>
 <tr>

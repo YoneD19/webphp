@@ -30,13 +30,20 @@ if($_SESSION['isadmin'] == 0){
     $email =$_POST['email'];
     $password =$_POST['password'];
     $isadmin =$_POST['isadmin'];
-    
-    $update="UPDATE user set name='$name', username='$username', 
-    email='$email',password='$password',isadmin='$isadmin' where id='$id'";
-    mysqli_query($mydb, $update);
-    $status = "Successfully. </br></br>
-    <a href='view.php'>View Updated Record</a>";
-    echo '<p>'.$status.'</p>';
+    $dup = mysqli_query($mydb,"SELECT * FROM user WHERE username = '$username' OR email = '$email'");
+    if(mysqli_num_rows($dup)>0){
+        echo
+        "<script>alert('Username or Email has already taken');</script></br>
+        <a href='view.php'>View Updated Record</a>";
+    }else{
+        $update="UPDATE user set name='$name', username='$username', 
+        email='$email',password='$password',isadmin='$isadmin' where id='$id'";
+        mysqli_query($mydb, $update);
+        $status = "Successfully. </br></br>
+        <a href='view.php'>View Updated Record</a>";
+        echo '<p>'.$status.'</p>';
+    }
+
     }else {
     ?>
     <div>
